@@ -9,7 +9,7 @@ function mark(id){document.querySelectorAll('.it').forEach(b=>b.classList.toggle
 document.body.append(el('div','brand','스텔라의 심쿵영어 · 심쿵 파닉스'),el('h1','',esc(P.title)),el('p','sub',esc(P.sub)));
 const go=el('button','go','▶ 듣고 따라 말하기');document.body.append(go);
 const list=el('div','list');
-P.items.forEach(it=>{const b=el('button','it'+(it.big?' big':'')+(it.t.length>8?' long':''),(it.e?'<i>'+it.e+'</i>':'')+'<b>'+esc(it.t)+'</b>'+(it.k?'<span>'+esc(it.k)+'</span>':''));b.dataset.a=it.a;
+P.items.forEach(it=>{const b=el('button','it'+(it.big?' big':'')+(it.t.includes(' ')?' wide':it.t.length>8?' long':''),(it.e?'<i>'+it.e+'</i>':'')+'<b>'+esc(it.t)+'</b>'+(it.k?'<span>'+esc(it.k)+'</span>':''));b.dataset.a=it.a;
  b.onclick=async()=>{if(playing)return;mark(it.a);await play(it.a);mark(null)};list.append(b)});
 document.body.append(list,el('p','hint','소리를 듣고, 멈춘 동안 큰 소리로 따라 말해요. 카드를 누르면 하나씩 다시 들을 수 있어요.'));
 go.onclick=async()=>{if(playing){stop=true;return}playing=true;stop=false;go.classList.add('on');go.textContent='■ 멈추기';
